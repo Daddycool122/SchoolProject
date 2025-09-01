@@ -16,8 +16,7 @@ export default function AddSchool() {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const [msg, setMsg] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(""); // "success" or "error"
-
+  const [submitStatus, setSubmitStatus] = useState(""); 
   const onSubmit = async (data) => {
     setIsLoading(true);
     setMsg("");
@@ -177,7 +176,7 @@ export default function AddSchool() {
               </div>
             </div>
 
-            {/* Image URL */}
+
             <div className="group">
               <label className="flex items-center text-sm font-semibold text-gray-700 mb-2">
                 <School className="h-4 w-4 mr-2 text-cyan-500" />

@@ -2,7 +2,7 @@ import { connectDB } from "@/lib/db";
 
 export const config = {
   api: {
-    bodyParser: true, // Enable default parser for JSON
+    bodyParser: true, 
   },
 };
 
@@ -15,12 +15,12 @@ export default async function handler(req, res) {
     console.log("Received body:", req.body);
     const { name, address, city, state, contact, email_id, image } = req.body;
 
-    // Validate required fields
+
     if (!name || !address || !city || !state || !contact || !email_id || !image) {
       return res.status(400).json({ error: "All fields are required" });
     }
 
-    // Validate image URL format
+
     const urlPattern = /^(https?:\/\/.*\.(?:png|jpg|jpeg|webp))$/i;
     if (!urlPattern.test(image)) {
       return res.status(400).json({ error: "Invalid image URL" });
