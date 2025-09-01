@@ -2,7 +2,7 @@ import multer from "multer";
 import path from "path";
 import { connectDB } from "@/lib/db";
 
-// Multer setup
+// Multer storage setup
 const upload = multer({
   storage: multer.diskStorage({
     destination: "./public/schoolimages",
@@ -10,13 +10,14 @@ const upload = multer({
   }),
 });
 
+// Disable default body parser
 export const config = {
   api: {
     bodyParser: false,
   },
 };
 
-// Helper to parse multipart/form-data
+// Helper to run middleware
 const runMiddleware = (req, res, fn) =>
   new Promise((resolve, reject) => {
     fn(req, res, (result) => {
@@ -34,12 +35,11 @@ export default async function handler(req, res) {
     // Run Multer middleware
     await runMiddleware(req, res, upload.single("image"));
 
-    // Check if file is uploaded
+    // Validate file
     if (!req.file) {
       return res.status(400).json({ error: "Image file is required" });
     }
 
-    // Form fields
     const { name, address, city, state, contact, email_id } = req.body;
 
     if (!name || !address || !city || !state || !contact || !email_id) {
@@ -57,7 +57,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ message: "School added successfully!" });
   } catch (err) {
-    console.error("Error:", err);
-    return res.status(500).json({ error: err.message });
+    console.error("API Error:", err);
+    return res.status(500).json({ error: err.message || "Server error" });
   }
 }

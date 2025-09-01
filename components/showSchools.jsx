@@ -117,7 +117,6 @@ export default function ShowSchools() {
           ))}
         </div>
 
-
         {schools.length === 0 && !loading && (
           <div className="text-center py-16">
             <div className="text-6xl mb-4">🏫</div>
