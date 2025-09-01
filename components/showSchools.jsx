@@ -97,7 +97,7 @@ export default function ShowSchools() {
 
                 <div className="flex items-center text-sm text-gray-500 mb-4">
                   <Clock className="w-4 h-4 mr-2" />
-                  <span>Established {school.established || "N/A"}</span>
+                  <span>Location {school.city || "N/A"}</span>
                 </div>
 
                 <button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 px-4 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-200 font-medium shadow-md hover:shadow-lg transform hover:scale-105">
