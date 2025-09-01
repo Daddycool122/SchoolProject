@@ -87,11 +87,11 @@ export default function ShowSchools() {
                 <div className="flex items-center justify-between text-sm text-gray-600 mb-4">
                   <div className="flex items-center">
                     <Users className="w-4 h-4 mr-1 text-green-500" />
-                    <span>{school.students || "N/A"} students</span>
+                    <span>{school.email_id || "N/A"} email</span>
                   </div>
                   <div className="flex items-center">
                     <Star className="w-4 h-4 mr-1 text-yellow-500 fill-current" />
-                    <span>{school.rating || "N/A"}</span>
+                    <span>{"5"}</span>
                   </div>
                 </div>
 
