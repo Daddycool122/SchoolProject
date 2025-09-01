@@ -51,26 +51,32 @@ export default function AddSchool() {
       formData.append("image", data.image[0]);
 
       const res = await fetch("/api/schools/add", {
-        method: "POST",
-        body: formData,
-      });
+  method: "POST",
+  body: formData,
+});
 
-      const result = await res.json();
-      
-      if (res.ok) {
-        setMsg("School added successfully! 🎉");
-        setSubmitStatus("success");
-        reset(); // Reset form
-        setPreviewImage(null); // Reset image preview
-        
-        // Auto-clear success message after 5 seconds
-        setTimeout(() => {
-          setMsg("");
-          setSubmitStatus("");
-        }, 5000);
-      } else {
-        throw new Error(result.message || "Failed to add school");
-      }
+// Only try to parse JSON if content exists
+let result = {};
+try {
+  result = await res.json();
+} catch (err) {
+  console.warn("Response is not JSON:", err);
+}
+
+if (res.ok) {
+  setMsg("School added successfully! 🎉");
+  setSubmitStatus("success");
+  reset();
+  setPreviewImage(null);
+
+  setTimeout(() => {
+    setMsg("");
+    setSubmitStatus("");
+  }, 5000);
+} else {
+  throw new Error(result.message || "Failed to add school");
+}
+
     } catch (error) {
       setMsg(error.message || "Something went wrong. Please try again.");
       setSubmitStatus("error");
