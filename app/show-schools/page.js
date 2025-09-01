@@ -1,4 +1,4 @@
-import ShowSchools from "@/components/ShowSchools";
+import ShowSchools from "../../components/showSchools";
 
 export default function ShowSchoolsPage() {
   return (

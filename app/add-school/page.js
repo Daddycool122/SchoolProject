@@ -1,4 +1,4 @@
-import AddSchool from "@/components/AddSchool";
+import AddSchool from "../../components/addSchool";
 
 export default function AddSchoolPage() {
   return (
