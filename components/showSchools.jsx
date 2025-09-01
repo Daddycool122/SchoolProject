@@ -7,9 +7,7 @@ export default function ShowSchools() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate API call with mock data for demonstration
     
-    // Uncomment this for actual API call:
     fetch("/api/schools")
       .then(res => res.json())
       .then(data => {
@@ -50,7 +48,7 @@ export default function ShowSchools() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-6">
       <div className="max-w-7xl mx-auto">
-        {/* Header Section */}
+
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             
@@ -60,7 +58,7 @@ export default function ShowSchools() {
           </p>
         </div>
 
-        {/* Schools Grid */}
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {schools.map((school, index) => (
             <div 
@@ -68,7 +66,7 @@ export default function ShowSchools() {
               className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2 hover:scale-105"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              {/* Image Container */}
+
               <div className="relative overflow-hidden">
                 <img 
                   src={school.image} 
@@ -81,7 +79,7 @@ export default function ShowSchools() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
 
-              {/* Content */}
+
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors duration-200">
                   {school.name}
@@ -92,7 +90,7 @@ export default function ShowSchools() {
                   <span className="text-sm">{school.address}, {school.city}</span>
                 </div>
 
-                {/* Stats Row */}
+
                 <div className="flex items-center justify-between text-sm text-gray-600 mb-4">
                   <div className="flex items-center">
                     <Users className="w-4 h-4 mr-1 text-green-500" />
@@ -104,13 +102,13 @@ export default function ShowSchools() {
                   </div>
                 </div>
 
-                {/* Established Year */}
+
                 <div className="flex items-center text-sm text-gray-500 mb-4">
                   <Clock className="w-4 h-4 mr-2" />
                   <span>Established {school.established}</span>
                 </div>
 
-                {/* Action Button */}
+
                 <button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 px-4 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-200 font-medium shadow-md hover:shadow-lg transform hover:scale-105">
                   Learn More
                 </button>
@@ -119,7 +117,7 @@ export default function ShowSchools() {
           ))}
         </div>
 
-        {/* Empty State */}
+
         {schools.length === 0 && !loading && (
           <div className="text-center py-16">
             <div className="text-6xl mb-4">🏫</div>

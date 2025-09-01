@@ -136,7 +136,7 @@ export default function AddSchool() {
               {errors.name && <p className="mt-2 text-sm text-red-600 flex items-center"><AlertCircle className="h-4 w-4 mr-1" />{errors.name.message}</p>}
             </div>
 
-            {/* Address */}
+            
             <div className="group">
               <label className="flex items-center text-sm font-semibold text-gray-700 mb-2">
                 <MapPin className="h-4 w-4 mr-2 text-green-500" />
@@ -150,7 +150,7 @@ export default function AddSchool() {
               {errors.address && <p className="mt-2 text-sm text-red-600 flex items-center"><AlertCircle className="h-4 w-4 mr-1" />{errors.address.message}</p>}
             </div>
 
-            {/* City and State */}
+            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="group">
                 <label className="flex items-center text-sm font-semibold text-gray-700 mb-2">
@@ -179,7 +179,7 @@ export default function AddSchool() {
               </div>
             </div>
 
-            {/* Contact and Email */}
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="group">
                 <label className="flex items-center text-sm font-semibold text-gray-700 mb-2">
@@ -220,7 +220,7 @@ export default function AddSchool() {
               </div>
             </div>
 
-            {/* Image Upload */}
+
             <div className="group">
               <label className="flex items-center text-sm font-semibold text-gray-700 mb-2">
                 <Camera className="h-4 w-4 mr-2 text-cyan-500" />
@@ -250,7 +250,7 @@ export default function AddSchool() {
               </div>
               {errors.image && <p className="mt-2 text-sm text-red-600 flex items-center"><AlertCircle className="h-4 w-4 mr-1" />{errors.image.message}</p>}
               
-              {/* Image Preview */}
+
               {previewImage && (
                 <div className="mt-4">
                   <p className="text-sm text-gray-600 mb-2">Image Preview:</p>
@@ -263,7 +263,7 @@ export default function AddSchool() {
               )}
             </div>
 
-            {/* Submit Button */}
+
             <div className="pt-6">
               <button
                 type="submit"
@@ -286,7 +286,7 @@ export default function AddSchool() {
           </form>
         </div>
 
-        {/* Additional Info */}
+
         <div className="mt-8 text-center">
           <p className="text-sm text-gray-500">
             All fields are required. Make sure to provide accurate information for school registration.

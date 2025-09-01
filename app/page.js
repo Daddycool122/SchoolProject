@@ -23,7 +23,6 @@ export default function Home() {
   });
 
   useEffect(() => {
-    // Trigger entrance animation
     setTimeout(() => setIsLoaded(true), 100);
   }, []);
 
@@ -53,20 +52,19 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 relative overflow-hidden">
-      {/* Background Decorations */}
+
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-10 -right-10 w-80 h-80 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute -bottom-10 -left-10 w-96 h-96 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-indigo-400/10 to-cyan-400/10 rounded-full blur-2xl animate-pulse delay-500"></div>
       </div>
 
-      {/* Main Content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
-        {/* Hero Section */}
+
         <div className={`text-center mb-16 transform transition-all duration-1000 ${
           isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
         }`}>
-          {/* Logo/Icon */}
+
           <div className="mx-auto mb-8 relative">
             <div className="w-24 h-24 bg-gradient-to-r from-blue-500 to-purple-600 rounded-3xl flex items-center justify-center shadow-2xl transform rotate-12 hover:rotate-0 transition-transform duration-500">
               <School className="w-12 h-12 text-white" />
@@ -76,20 +74,17 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Title */}
           <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 bg-clip-text text-transparent leading-tight">
             Welcome to
             <br />
             <span className="text-5xl md:text-7xl">School Management</span>
           </h1>
 
-          {/* Subtitle */}
           <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
             Your comprehensive platform for managing educational institutions, 
             tracking progress, and building the future of learning
           </p>
 
-          {/* Stats Section */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-12 max-w-4xl mx-auto">
             {statsData.map((stat, index) => (
               <div 
@@ -107,7 +102,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Action Buttons */}
         <div className={`flex flex-col md:flex-row gap-6 md:gap-8 w-full max-w-4xl transform transition-all duration-1000 delay-500 ${
           isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
         }`}>
@@ -117,41 +111,33 @@ export default function Home() {
               href={feature.href}
               className="group relative flex-1 bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 overflow-hidden"
             >
-              {/* Background Gradient */}
               <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
-              
-              {/* Content */}
+
               <div className="relative z-10">
-                {/* Icon */}
                 <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                   <feature.icon className="w-8 h-8 text-white" />
                 </div>
 
-                {/* Title */}
                 <h3 className="text-2xl font-bold text-gray-800 mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300">
                   {feature.title}
                 </h3>
 
-                {/* Description */}
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   {feature.description}
                 </p>
 
-                {/* Arrow */}
                 <div className="flex items-center text-gray-400 group-hover:text-blue-600 transition-colors duration-300">
                   <span className="text-sm font-semibold mr-2">Get Started</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
                 </div>
               </div>
 
-              {/* Hover Effect Border */}
               <div className={`absolute inset-0 rounded-3xl border-2 border-transparent bg-gradient-to-r ${feature.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
                    style={{ mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', maskComposite: 'exclude' }}></div>
             </a>
           ))}
         </div>
 
-        {/* Bottom CTA */}
         <div className={`mt-16 text-center transform transition-all duration-1000 delay-700 ${
           isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
         }`}>
@@ -160,13 +146,12 @@ export default function Home() {
           </p>
           <div className="flex items-center justify-center space-x-2 text-blue-600">
             <BookOpen className="w-5 h-5" />
-            <span className="font-semibold">Let's get started</span>
+            <span className="font-semibold">Let&apos;s get started</span>
             <Sparkles className="w-5 h-5 animate-pulse" />
           </div>
         </div>
       </div>
 
-      {/* Floating Elements */}
       <div className="absolute top-20 left-10 w-4 h-4 bg-blue-400 rounded-full animate-bounce delay-1000"></div>
       <div className="absolute top-40 right-20 w-3 h-3 bg-purple-400 rounded-full animate-bounce delay-2000"></div>
       <div className="absolute bottom-32 left-16 w-5 h-5 bg-pink-400 rounded-full animate-bounce delay-1500"></div>
