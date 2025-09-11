@@ -1,4 +1,5 @@
 import { connectDB } from "@/lib/db";
+import { getUserFromReq } from "@/lib/auth"; // Import your auth middleware
 
 export const config = {
   api: {
@@ -7,6 +8,12 @@ export const config = {
 };
 
 export default async function handler(req, res) {
+  // Check authentication
+  const user = getUserFromReq(req);
+  if (!user) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
@@ -15,11 +22,9 @@ export default async function handler(req, res) {
     console.log("Received body:", req.body);
     const { name, address, city, state, contact, email_id, image } = req.body;
 
-
     if (!name || !address || !city || !state || !contact || !email_id || !image) {
       return res.status(400).json({ error: "All fields are required" });
     }
-
 
     const urlPattern = /^(https?:\/\/.*\.(?:png|jpg|jpeg|webp))$/i;
     if (!urlPattern.test(image)) {

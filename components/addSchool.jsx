@@ -1,6 +1,7 @@
 "use client"
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Login from "./Login"; // Make sure this path is correct
 import { 
   School, 
   MapPin, 
@@ -17,6 +18,23 @@ export default function AddSchool() {
   const [msg, setMsg] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(""); 
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  // Optionally, check for session cookie here for persistent login
+  useEffect(() => {
+  // Call a protected API route to check authentication
+  fetch("/api/schools/add", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ check: true }) // dummy body
+  })
+    .then(res => {
+      if (res.status === 401) setLoggedIn(false);
+      else setLoggedIn(true);
+    })
+    .catch(() => setLoggedIn(false));
+}, []);
+
   const onSubmit = async (data) => {
     setIsLoading(true);
     setMsg("");
@@ -51,6 +69,11 @@ export default function AddSchool() {
       setIsLoading(false);
     }
   };
+
+  // Protect the form: show login if not logged in
+  if (!loggedIn) {
+    return <Login onLogin={() => setLoggedIn(true)} />;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -175,7 +198,6 @@ export default function AddSchool() {
                 {errors.email_id && <p className="mt-2 text-sm text-red-600 flex items-center"><AlertCircle className="h-4 w-4 mr-1" />{errors.email_id.message}</p>}
               </div>
             </div>
-
 
             <div className="group">
               <label className="flex items-center text-sm font-semibold text-gray-700 mb-2">

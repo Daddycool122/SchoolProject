@@ -1,5 +1,6 @@
-"use client"
+"use client";
 import { useState, useEffect } from "react";
+import Login from "../components/Login";
 import { 
   School, 
   Plus, 
@@ -15,6 +16,9 @@ import {
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+
   const [stats] = useState({
     totalSchools: 156,
     totalStudents: 45280,
@@ -24,7 +28,21 @@ export default function Home() {
 
   useEffect(() => {
     setTimeout(() => setIsLoaded(true), 100);
+
+    // Check session
+    fetch("/api/auth/me")
+      .then(res => {
+        if (res.status === 200) setLoggedIn(true);
+      })
+      .catch(() => setLoggedIn(false));
   }, []);
+
+  const handleAddSchoolClick = (e) => {
+    if (!loggedIn) {
+      e.preventDefault(); // stop redirect
+      setShowLogin(true); // show login modal
+    }
+  };
 
   const features = [
     {
@@ -32,7 +50,8 @@ export default function Home() {
       title: "Add Schools",
       description: "Register new educational institutions with comprehensive details and media",
       color: "from-blue-500 to-cyan-500",
-      href: "/add-school"
+      href: "/add-school",
+      onClick: handleAddSchoolClick
     },
     {
       icon: Eye,
@@ -52,6 +71,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 relative overflow-hidden">
+      {/* Show login modal only when needed */}
+      {showLogin && <Login onLogin={() => { setLoggedIn(true); setShowLogin(false); }} />}
 
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-10 -right-10 w-80 h-80 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
@@ -64,7 +85,6 @@ export default function Home() {
         <div className={`text-center mb-16 transform transition-all duration-1000 ${
           isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
         }`}>
-
           <div className="mx-auto mb-8 relative">
             <div className="w-24 h-24 bg-gradient-to-r from-blue-500 to-purple-600 rounded-3xl flex items-center justify-center shadow-2xl transform rotate-12 hover:rotate-0 transition-transform duration-500">
               <School className="w-12 h-12 text-white" />
@@ -109,6 +129,7 @@ export default function Home() {
             <a
               key={feature.title}
               href={feature.href}
+              onClick={feature.onClick}
               className="group relative flex-1 bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 overflow-hidden"
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
@@ -131,9 +152,6 @@ export default function Home() {
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
                 </div>
               </div>
-
-              <div className={`absolute inset-0 rounded-3xl border-2 border-transparent bg-gradient-to-r ${feature.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-                   style={{ mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', maskComposite: 'exclude' }}></div>
             </a>
           ))}
         </div>
@@ -151,11 +169,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-      <div className="absolute top-20 left-10 w-4 h-4 bg-blue-400 rounded-full animate-bounce delay-1000"></div>
-      <div className="absolute top-40 right-20 w-3 h-3 bg-purple-400 rounded-full animate-bounce delay-2000"></div>
-      <div className="absolute bottom-32 left-16 w-5 h-5 bg-pink-400 rounded-full animate-bounce delay-1500"></div>
-      <div className="absolute bottom-20 right-10 w-4 h-4 bg-indigo-400 rounded-full animate-bounce delay-500"></div>
     </div>
   );
 }
