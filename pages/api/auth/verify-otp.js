@@ -14,7 +14,7 @@ export default async function handler(req, res) {
   const expiresAt = new Date(rows[0].expires_at);
   if (expiresAt < new Date()) return res.status(400).json({ error: "OTP expired" });
 
-  const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: "1d" });
+  const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: "10m" });
 
   res.setHeader("Set-Cookie", `token=${token}; HttpOnly; Path=/; Max-Age=86400`);
 
